@@ -8,8 +8,7 @@ Esta guía fue creada con el fin de introducir el tema de una manera sencilla y 
 * Qué es Docker
 * Entiendiendo la Arquitectura
 * Como se compara Docker con las Máquinas Virtuales
+* Instalando Docker
 * Usando Docker
-* Características de Docker
-* Casos de Usos
 
 Cuando termine de leer esta guía será capaz de entender lo que es docker y como utilizarlo.
