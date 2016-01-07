@@ -1,25 +1,31 @@
 # DockerFiles
 
-En el capítulo anterior vimos como pudimos crear una imágen basadas en un contenedor que lanzamos y le hicimos algunos cambios, como instalarle un paquete. En esa misma entrada les hablaba que es posible que necesitemos ciertos niveles de personalización y esto lo podemos lograr mediante un DockerFile.
+Un **DockerFile** es un documento de texto que contiene todos los comandos que queramos ejecutar en la linea de comandos para armar una imágen. Esta imágen se creará mediante el comando **docker build** que irá siguiendo las instrucciones. 
 
-Un DockerFile es un documento de texto que contiene todos los comandos que queramos ejecutar en la linea de comandos para armar una imágen. Esta imágen se creará mediante el comando docker build que irá siguiendo las instrucciones. Antes de hablar de los Dockerfiles vamos a hablar un poco del comando docker build que es el que ejecutaremos una vez tenemos las instrucciones a seguir en un archivo.
+Antes de hablar de los Dockerfiles vamos a hablar un poco del comando **docker build** que es el que ejecutaremos una vez tenemos las instrucciones a seguir en un archivo.
 
-El comando docker build arma una imágen siguiendo las instrucciones de un DockerFile que se puede encontrar en el directorio actual o un repositorio. La creación de la imágen es ejecutada por el daemon de Docker. Es importante tener en cuenta que docker build le manda todo el contexto del directorio actual al daemon, por lo que es buena práctica colocar el DockerFile en un directorio limpio y agregar los archivos necesarios en ese directorio en caso de ser necesario.
+El comando **docker build** arma una imágen siguiendo las instrucciones de un DockerFile que se puede encontrar en el directorio actual o un repositorio. La creación de la imágen es ejecutada por el daemon de Docker. Es importante tener en cuenta que docker build le manda todo el contexto del directorio actual al daemon, por lo que es buena práctica colocar el DockerFile en un directorio limpio y agregar los archivos necesarios en ese directorio en caso de ser necesario.
 
-El Docker Daemon corre las instrucciones en un Dockerfile linea por linea y va lanzando los resultados en pantalla. Un punto importante es que cada instrucción es ejecutada en nuevas imágenes, hasta que muestra el ID de la imágen resultante una vez finalizada las instrucciones, el daemon irá haciendo una limpieza automáticamente de las imágenes intermedias.
+El **Docker Daemon** corre las instrucciones en un Dockerfile linea por linea y va lanzando los resultados en pantalla. Un punto importante es que cada instrucción es ejecutada en nuevas imágenes, hasta que muestra el ID de la imágen resultante una vez finalizada las instrucciones, el daemon irá haciendo una limpieza automáticamente de las imágenes intermedias.
 
-Nota: Dicho esto de que el Docker daemon va creando imágenes intermedias durante la creación de la imágen, si por ejemplo en un comando ejecutamos cd /scripts/ y en otra linea le mandamos a ejecutar un script no va a funcionar, ya que ha lanzado otra imágen intermedia. Teniendo esto en cuenta, la manera correcta de hacerlo sería, cd /scripts/ ; ./install.sh.
+Nota: Dicho esto de que el Docker daemon va creando imágenes intermedias durante la creación de la imágen, si por ejemplo en un comando ejecutamos``` cd /scripts/``` y en otra linea le mandamos a ejecutar un script no va a funcionar, ya que ha lanzado otra imágen intermedia. Teniendo esto en cuenta, la manera correcta de hacerlo sería ```cd /scripts/ ; ./install.sh```
 
-Ahora, viene otra pregunta, como nos ayuda todo esto de las Imágenes intermedias o Cache? Si por alguna razón la creación de la imágen falla, ya sea por un comando mal digitado en el archivo, o lo que sea, cuando corregimos el Dockerfile, este no iniciará todo el proceso nuevamente, sino, que hará uso de las imágenes intermedias, y continuará la creación en el punto donde falló.
 
-Ya que entendemos que es el Dockerfile, vamos a ver ahora el formato y las opciones que podemos pasarle.
+**Ahora, viene otra pregunta, como nos ayuda todo esto de las Imágenes intermedias o Cache?** Si por alguna razón la creación de la imágen falla, ya sea por un comando mal digitado en el archivo, o lo que sea, cuando corregimos el Dockerfile, este no iniciará todo el proceso nuevamente, sino, que hará uso de las imágenes intermedias, y continuará la creación en el punto donde falló.
+
+Ya que entendemos que es el **Dockerfile**, vamos a ver ahora el formato y las opciones que podemos pasarle.
 
 Lo primero es que un DockerFile Inicia con una instrucción:
-FROM
+
+
+### FROM
+
+
 
 FROM indica la imágen base que va a utilizar para seguir futuras instrucciones. Buscará si la imagen se encuentra localmente, en caso de que no, la descargará de internet.
 
-Sintaxis
+**Sintaxis
+**
 
     FROM <imagen>
     FROM <imagen>:<tag>
@@ -28,10 +34,14 @@ Ejemplos
 
     FROM centos:latest
 
-El tag es opcional, en caso de que no la especifiquemos, el daemon de docker asumirá latest por defecto.
+El **tag** es opcional, en caso de que no la especifiquemos, el daemon de docker asumirá **latest** por defecto.
 
 Vamos a seguir con las otras instrucciones
-MAINTAINER
+
+
+### MAINTAINER
+
+
 
 Esta instrucción nos permite configurar datos del autor que genera la imágen.
 
@@ -43,7 +53,10 @@ Ejemplo
 
     MAINTAINER Jason Soto “jason_soto@jsitech.com”
 
-RUN
+
+### RUN
+
+
 
 RUN tiene 2 formatos:
 
@@ -52,8 +65,12 @@ RUN tiene 2 formatos:
 
 Esta instrucción ejecuta cualquier comando en una capa nueva encima de una imágen y hace un commit de los resultados. Esa nueva imágen intermedia es usada para el siguiente paso en el Dockerfile.
 
-El modo ejecución nos permite correr comandos en imágenes bases que no cuenten con /bin/sh, nos permite además hacer uso de otra shell si así lo deseamos, ej: RUN [“/bin/bash”, “-c”, “echo prueba”].
-ENV
+El modo ejecución nos permite correr comandos en imágenes bases que no cuenten con ```/bin/sh```, nos permite además hacer uso de otra shell si así lo deseamos, ej: ```RUN [“/bin/bash”, “-c”, “echo prueba”]```.
+
+
+### ENV
+
+
 
 ENV tiene 2 formas:
 
@@ -62,8 +79,12 @@ ENV tiene 2 formas:
 
 Esta instrucción configura las variables de ambiente, estos valores estarán en los ambientes de todos los comandos que sigan en el DockerFile. Pueden por igual ser sustituidos en una linea.
 
-Estos valores persistirán al momento de lanzar un contenedor de la imagen creada. Pueden ser sustituida pasando la opción –env en docker run. Ej: docker run –env <key>=<valor>
-ADD
+Estos valores persistirán al momento de lanzar un contenedor de la imagen creada. Pueden ser sustituida pasando la opción –env en docker run. Ej: ```docker run –env <key>=<valor>```
+
+
+### ADD
+
+
 
 ADD tiene 2 formas:
 
@@ -76,7 +97,10 @@ Ejemplo:
 
     ADD ./prueba.sh /var/tmp/prueba.sh
 
-EXPOSE
+
+### EXPOSE
+
+
 
 Esta instrucción le especifica a docker que el contenedor escucha en los puertos especificados en su ejecución. EXPOSE no hace que los puertos puedan ser accedidos desde el host, para esto debemos mapear los puertos usando la opción -p en docker run
 
@@ -86,7 +110,10 @@ Ejemplo:
 
     docker run centos:centos7 -p 8080:80
 
-CMD
+
+### CMD
+
+
 
 CMD tiene tres formatos:
 
@@ -106,8 +133,12 @@ Si queremos ejecutar un comando sin un shell, debemos expresar el comando en for
 
     CMD [“/usr/bin/service”, “httpd”, “start”]
 
-Si lo que queremos es que el mismo ejecutable corra todo el tiempo, lo que necesitamos es un punto de entrada ENTRYPOINT en combinación con CMD. En caso de pasarle un comando mediante docker run, este correrá en vez del especificado por CMD.
-ENTRYPOINT
+Si lo que queremos es que el mismo ejecutable corra todo el tiempo, lo que necesitamos es un punto de entrada **ENTRYPOINT** en combinación con CMD. En caso de pasarle un comando mediante docker run, este correrá en vez del especificado por CMD.
+
+
+### ENTRYPOINT
+
+
 
 ENTRYPOINT tiene 2 formas:
 
@@ -128,10 +159,14 @@ Veamos un ejemplo de uso ENTRYPOINT en un DockerFile
 
     CMD [“-p”, “80”]
 
-En este ejemplo corremos httpd, en modo verbose, en el ENTRYPOINT, y los argumentos que entendamos puedan cambiar con CMD, puerto 80. Si quisiera correr el contenedor con httpd corriendo en el puerto 8080, solo tendría que ejecutar docker run centos:centos7 -p 8080.
+En este ejemplo corremos httpd, en modo verbose, en el ENTRYPOINT, y los argumentos que entendamos puedan cambiar con CMD, puerto 80. Si quisiera correr el contenedor con httpd corriendo en el puerto 8080, solo tendría que ejecutar ```docker run centos:centos7 -p 8080```.
 
 Es posible tambien hacer uso de scripts para ejecutar ciertas cosas, pero lo mantendré simple.
-VOLUME
+
+
+### VOLUME
+
+
 
 Esta instrucción crea un punto de montaje con un nombre especificado y lo marca con un volumen montado externamente desde el host y otro contenedor. El valor pueden ser pasado en formato JSON o argumento plano.
 
@@ -139,14 +174,18 @@ Esta instrucción crea un punto de montaje con un nombre especificado y lo marca
     VOLUME /var/tmp
 
 El comando docker run inicializará el nuevo contenedor con cualquier data que exista en la ubicación dentro de la imágen base.
-USER
+
+
+### USER
+
+
 
 Esta instrucción configura el nombre de usuario a usar cuando se lanza un contenedor y para la ejecución de cualquier instrucción RUN, CMD o ENTRYPOINT.
 WORKDIR
 
     WORKDIR ruta/de/trabajo
 
-Esta instrucción configura el directorio de trabajo para cualquier instrucción RUN, CMD, ENTRYPOINT, COPY o ADD en un DockerFile. Puede ser usada varias veces dentro de un DockerFile. Si se da una ruta relativa, esta será la ruta relativa de la instrucción WORKDIR anterior.
+Esta instrucción configura el directorio de trabajo para cualquier instrucción **RUN, CMD, ENTRYPOINT, COPY o ADD** en un DockerFile. Puede ser usada varias veces dentro de un DockerFile. Si se da una ruta relativa, esta será la ruta relativa de la instrucción WORKDIR anterior.
 
 Esta instrucción tiene la capacidad de resolver variables de ambiente previamente configuradas mediante la instrucción ENV. Ejemplo:
 
