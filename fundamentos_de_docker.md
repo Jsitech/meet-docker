@@ -2,6 +2,8 @@
 
 #Que es Docker?
 
+![](DockerLogo.png)
+
 Docker es un proyecto Open Source basado en contenedores de Linux, es básicamente un motor de contenedores que usa características del Kernel de Linux como espacios de nombres y controles de grupos para crear contenedores encima del Sistema operativo y automatizar el despliegue de aplicaciones en estos contenedores. Nos permite además un flujo de trabajo bastante eficiente al momento de mover nuestras aplicaciones desde un ambiente de desarrollo, a pruebas y finalmente a producción.
 
 
