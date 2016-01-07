@@ -1,5 +1,5 @@
 # Summary
 
 * [Introducción](README.md)
-* Acerca del Autor
+* [Acerca del Autor](acerca_del_autor.md)
 
