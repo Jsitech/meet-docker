@@ -24,3 +24,4 @@ El contenedor de docker aloja todo lo necesario para ejecutar una aplicación. C
 **Veamos gráficamente la arquitectura
 **
 
+![](docker2.png)
