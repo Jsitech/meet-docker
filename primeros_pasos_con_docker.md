@@ -28,3 +28,83 @@ Se puede configurar los repositorios de Docker Hub de dos maneras:
 Se pueden crean repositorios públicos que pueden ser accedidos por otros usuarios de HUB, o se pueden crear repositorios privados con accesos limitados.
 
 Pueden crear su cuenta en https://hub.docker.com, luego veremos como podemos aprovechar todo esto.
+
+El daemon de Docker hace uso de Hub para obtener y subir sus imágenes. Ya que tenemos una base, vamos a jugar un poco con Docker.
+
+**Busquemos una imagen base de Centos
+**
+
+    $ docker search centos
+
+![](dockerhub3.png)
+
+Vamos a descargar la imagen official base de centos. Asi que nos fijamos en NAME y lo pasamos al docker pull
+
+    $ docker pull docker.io/centos
+
+![](dockerpullcentos.png)
+
+Otra forma que podemos usar para buscar una imagen es mediante el Hub.
+
+Si hacemos la búsqueda de centos tendremos algo así.
+
+![](dockerhub4.png)
+
+Aquí tenemos el comando y los tags para obtener una version específica. Si ven tenemos como comando docker pull centos, y si deseamos por ejemplo descargar la version 7 de centos o la última version, los comandos se verían así.
+
+    $ docker pull centos:centos7
+
+    $ docker pull centos:latest
+
+Ya descargada la imagen, confimamos que este ahí con
+
+    $ docker images
+
+```docker.io/centos       latest             ce20c473cd8a       2 weeks ago         172.3 MB
+```
+
+![](dockerimages.png)
+
+Ya vemos que tenemos la imagen ahí. Ahora como podemos interactuar con esa imagen o lanzar un contenedor con esa imagen? A eso vamos, pero antes recuerden esto, cuando lanzamos un contenedor, y hacemos cualquier tarea esto no se ve reflejado al momento de lanzar otro contenedor con la misma imagen
+
+Vamos a lanzar un contenedor basado en esa imagen e interactuar con la linea de comandos de ese contenedor
+
+    $ docker run –i –t docker.io/centos:latest /bin/bash
+
+-i : Interactivo
+
+-t: tty
+
+[root@71c6ab01cd3e /]#
+
+![](dockerhub5.png)
+
+Aquí ya estamos interactuando con el contenedor, esa numeración que ven luego de root es el id del contenedor, podemos actualizar el Sistema, instalar paquetes, etc. Este contenedor tambien cuenta con una IP con la que podemos interactuar con el contenedor.
+
+Veamos los contenedores que tenemos corriendo. Abran otra terminal en el server.
+
+    $ docker ps
+
+![](dockerhub6.png)
+
+Aquí tenemos el ID de contenedor, la imagen que usamos para lanzarlo, el comando que corrimos y al final el Nombre. Con este nombre que docker le asignó aleatoreamente podemos interactuar con el contenedor. Este Nombre por igual lo podemos asignar nosotros.
+
+Si queremos detener el contenedor
+
+    $ docker stop reverent_bardeen (que es el nombre asignado por docker)
+
+Si corremos docker ps, veremos que ya no hay nada. Lo Bueno del caso es que ese contenedor permanece ahi, con los cambios que nosostros le realizamos.
+
+    $ docker ps –a
+
+![](dockerpsa.png)
+
+Podemos reiniciar nuevamente ese contenedor y conectarnos a el
+
+    $ docker start reverent_barden
+
+    $ docker attach reverent_barden
+
+![](dockerattach.png)
+
+Aquí estamos nuevamente conectado con nuestro contenedor.
