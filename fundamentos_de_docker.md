@@ -32,3 +32,11 @@ Un espacio de nombre envuelve un recurso de Sistema global en una abstracción q
 **
 
 Los recursos usados por un contenedor son controladores por el control de grupos. Se puede configurar cuanto CPU y memoria usa un contenedor hacienda uso de ellos.
+
+
+### Docker VS Máquinas Virtuales
+
+
+La diferencia mas notable es que las Máquinas Virtuales son sistemas operativos completos por lo que tendríamos que contar con muchos recursos. Docker en cambio aprovecha los recursos del sistema operativo sobre el cual se ejecuta, como el Kernel y librerias. Es por esta razón que terminanos con imágenes que ocupan muy poco espacio.
+
+![](docker-containers-vms.png)
