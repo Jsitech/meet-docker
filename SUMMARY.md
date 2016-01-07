@@ -9,5 +9,5 @@
 * [Creando Imágenes](creando_imagenes.md)
    * [DockerFiles](dockerfiles.md)
    * [Mejores Prácticas DockerFiles](mejores_practicas_dockerfiles.md)
-* Comando Docker Run
+* [Comando Docker Run](comando_docker_run.md)
 
