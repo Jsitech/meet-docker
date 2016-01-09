@@ -20,7 +20,8 @@ Mas de 10 años de Experiencia en el Area de TI, en la Administración de sistem
 
 # Proyectos
 
-Constantemente hace publicaciones sobre Seguridad, Ethical Hacking, Linux entre otros, en jsitech.com. La Idea es compartir el conocimiento con todos los profesionales del área de la Tecnología de la Información especialmente en Seguridad informática. Cuenta además con otros proyectos:
+Constantemente hace publicaciones sobre Seguridad, Ethical Hacking, Linux entre otros, en su blog [**JsiTech
+**](http://jsitech.com). La Idea es compartir el conocimiento con todos los profesionales del área de la Tecnología de la Información especialmente en Seguridad informática. Cuenta además con otros proyectos:
 
 [**IT-Talks
 **](http://it-talks.org)
