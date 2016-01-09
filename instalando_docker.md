@@ -36,8 +36,44 @@ En esta guía veremos la instalación de Docker en CentOS y Ubuntu.
 
     $ apt-get install docker.io
 
-Una vez instalamos vamos asegurarnos que el servicio de Docker suba cada vez que booteemos nuestros servers.
+### Debian 7/8
 
+``````
+$ apt-get purge lxc-docker*
+$ apt-get purge docker.io*
+``````
+
+**Agregamos la nueva llave gpg
+**
+``````
+ $ apt-key adv --keyserver hkp://p80.pool.sks-keyservers.net:80 --recv-keys 58118E89F3A912897C070ADBF76221572C52609D
+ ``````
+ 
+**Agregamos los repos de Docker
+**
+
+``````
+$ nano /etc/apt/sources.list.d/docker.list
+``````
+
+**Debian 7
+**
+``````
+deb https://apt.dockerproject.org/repo debian-wheezy main
+``````
+
+**Debian 8
+**
+``````
+deb https://apt.dockerproject.org/repo debian-jessie 
+``````
+``````
+$ apt-get update
+$ apt-get install docker-engine
+``````
+
+**Una vez instalamos vamos asegurarnos que el servicio de Docker suba cada vez que booteemos nuestros servers.
+**
 
 ### Centos 6
 
@@ -58,6 +94,9 @@ Una vez instalamos vamos asegurarnos que el servicio de Docker suba cada vez que
 
 
     $ chkconfig docker.io on
+
+
+
 
 Iniciamos los servicios para asegurarnos que todo anda bien.
 
@@ -82,6 +121,12 @@ Iniciamos los servicios para asegurarnos que todo anda bien.
 
     $ service docker.io start
 
+
+### Debian 7/8
+
+    $ service docker start
+    
+    
 Ya que tenemos el ambiente listo. Vamos a ejecutar el commando Docker a ver que nos trae.
 
     $ docker
