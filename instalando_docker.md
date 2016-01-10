@@ -65,7 +65,7 @@ deb https://apt.dockerproject.org/repo debian-wheezy main
 **Debian 8
 **
 ``````
-deb https://apt.dockerproject.org/repo debian-jessie 
+deb https://apt.dockerproject.org/repo debian-jessie main
 ``````
 ``````
 $ apt-get update
