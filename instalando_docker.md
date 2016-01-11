@@ -1,5 +1,5 @@
 # Instalando Docker
-En esta guía veremos la instalación de Docker en CentOS y Ubuntu.
+En esta guía veremos la instalación de Docker en CentOS, Ubuntu y Debian.
 
 
 ### CentOS 6
