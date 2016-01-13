@@ -29,13 +29,13 @@ Cuando lanzamos el contenedor por defecto corre en modo foreground y atacha la c
 
 Si no se especifica nada con ```-a```, Docker atachara todos los streams.
 
-Ejemplo:
+**Ejemplo:**
 
     $ docker run -a stdout -i -t centos:centos7
 
 Si pasamos la opción ```-d```, el contenedor se lanzará en modo Detached. En este modo cuando el proceso raíz haya finalizado el contenedor se detiene. Debemos tener pendiente que si le pasamos un comando al contenedor en la ejecución, una vez el comando se ejecute, se detendrá. Es por esto que siempre debemos configurar muy bien lo que deseamos en los Dockerfiles, específicamente hablando los ```EntryPoints``` y ```CMD```.
 
-Ejemplo:
+**Ejemplo:**
 
     $ docker run -i -t -d centos:centos /bin/bash
 
@@ -52,7 +52,7 @@ Cuando lanzamos un contenedor el daemon de Docker lo identifica con 3 valores:
 
 Docker por defecto le asigna un nombre aleatorio al contenedor. Este nombre lo podemos utilizar para interactuar de diversas maneras, algunos ejemplos serían, obtener algunos detalles del contenedor, detenerlo, reiniciarlo y mas. Este nombre lo podemos obtener cuando ejecutamos un ```docker ps```. Este nombre podemos configurarlo como deseemos, de esta manera podemos identificar el contenedor con sus funciones por ejemplo. Esto lo hacemos con la opción ```--name```.
 
-Ejemplo:
+**Ejemplo:**
 
     $ docker run -i -t -d –name=”webserver” -p 80:80 centos:webimage /bin/bash
 
@@ -81,7 +81,7 @@ Por defecto los contenedores tienen las conexiones de redes habilitadas y pueden
 
 **Nota**: Cuando usamos la opcion host le da al contenedor acceso por completo a los servicios del sistema local por lo que se considera Inseguro.
 
-Algunos Ejemplos:
+**Algunos Ejemplos:**
 
 Configurando los DNS en el contenedor
 
@@ -159,13 +159,13 @@ Ejemplo:
 
 
 
-Ejemplos:
+**Ejemplos:**
 
     $ docker run -i -t -d -m 500m centos:centos7 /bin/bash
 
     $ docker run -i -t -d -m 500m --memory-swap 2G centos:centos7 /bin/bash
 
-Otros Ejemplos:
+**Otros Ejemplos:**
 
     $ docker run -i -t -d --cpuset-cpus=”1” centos:centos7 /bin/bash
 
@@ -175,13 +175,13 @@ Otros Ejemplos:
 
 **--entrypoint**=”” : Sobreescribe el entrypoint especificado en el Dockerfile
 
-Ejemplo:
+**Ejemplo:**
 
     $ docker run -i -t -d --entrypoint /bin/bash centos:centos7
 
 **--expose=[]** : Expone un puerto o un rango en el contenedor
 
-Ejemplos:
+**Ejemplos:**
 
     $ docker run -i -t -d --expose=80 -p 80:80 centos:centos7 /bin/bash
 
@@ -191,17 +191,17 @@ Si la imagen creada ya tiene por defecto los puertos expuesto solo debemos mapea
 
     $ docker run -i -t -d --expose=80 -P centos:centos7 /bin/bash
 
-Nota: ```-P``` mapea todos los puertos expuestos en el contenedor a puertos aleatorios en el Host.
+**Nota**: ```-P``` mapea todos los puertos expuestos en el contenedor a puertos aleatorios en el Host.
 
 **-v=[] **: Enlaza un Directorio en el host al contenedor o crea un volumen
 
-Ejemplos:
+**Ejemplos:**
 
     $ docker run -i -t -d -v /home/jsitech/sitio/:/var/www/html/ -p 80:80 centos:centos7 /bin/bash
 
 **-u=”” **: Configura el usuario por defecto dentro del contenedor
 
-Ejemplos:
+**Ejemplos:**
 
     $ docker run -i -t -d –expose=80 -p 80:80 -u jsitech centos:centos7 /bin/bash
 
