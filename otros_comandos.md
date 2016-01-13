@@ -12,7 +12,13 @@ Si corremos docker en la linea de comandos nos devolverá una lista de las opcio
 
 Vamos a ver ahora que hacen cada uno
 
-**docker ps **: Muestra los contenedores que están corriendo, si le pasamos -a nos mostrará también los contenedores que hemos detenido
+
+
+### docker ps
+
+
+
+Muestra los contenedores que están corriendo, si le pasamos -a nos mostrará también los contenedores que hemos detenido
 
 **Ejemplo**:
 
@@ -24,31 +30,53 @@ Vamos a ver ahora que hacen cada uno
 
 ![](dockerpsa.png)
 
-**docker attach :** Se conecta a un contenedor que esta corriendo, podemos hacerlo por el nombre o por el ID de contenedor
 
-Ejemplo:
+### docker attach
+
+
+
+Se conecta a un contenedor que esta corriendo, podemos hacerlo por el nombre o por el ID de contenedor
+
+**Ejemplo**:
 
     $ docker attach c171f37f3224
 
     $ docker attach naughty_colden
 
-**docker start :** Reinicia un contenedor detenido. Lo podemos hacer por el Nombre o el ID
 
-**docker stop :** Detiene un contenedor
+### docker start
 
-Ejemplo:
+
+
+Reinicia un contenedor detenido. Lo podemos hacer por el Nombre o el ID
+
+
+### docker stop 
+
+
+
+Detiene un contenedor
+
+**Ejemplo:
+**
 
     $ docker start naughty_colden
 
 ![](dockerstart.png)
 
-**docker diff :** Lista los cambios hechos en el sistema de arhivos de un contenedor. Hay 3 eventos que muestra
 
-A – Agregado
 
-D – Eliminado
+### docker diff 
 
-C – Cambio
+
+
+Lista los cambios hechos en el sistema de arhivos de un contenedor. Hay 3 eventos que muestra
+
+**A** – Agregado
+
+**D **– Eliminado
+
+**C** – Cambio
 
 
 **Ejemplo:
@@ -58,7 +86,13 @@ C – Cambio
 
 ![](dockerdiff.png)
 
-**docker events :** Muestra eventos en tiempo real del estado de los contenedores.
+
+
+### docker events
+
+
+
+Muestra eventos en tiempo real del estado de los contenedores.
 
 **Ejemplo:
 **
@@ -67,13 +101,21 @@ C – Cambio
 
 ![](dockerevents.png)
 
-**docker exec :** Ejecuta un comando en un contenedor activo
+
+
+### docker exec
+
+
+
+Ejecuta un comando en un contenedor activo
 
 Ejemplo:
 
     $ docker exec -d kali/kali-nmap touch /tmp/file
 
-docker inspect: Muestra informaciones de bajo nivel del contenedor o la imagen
+### docker inspect
+
+Muestra informaciones de bajo nivel del contenedor o la imagen
 
 **Ejemplo**
 
@@ -85,7 +127,13 @@ docker inspect: Muestra informaciones de bajo nivel del contenedor o la imagen
 
 ![](dockerinspect2.png)
 
-**docker export :** Exporta el contenido del sistema de archivo de un contenedor a un archivo tar
+
+
+### docker export
+
+
+
+Exporta el contenido del sistema de archivo de un contenedor a un archivo tar
 
 **Ejemplo:
 **
@@ -94,7 +142,12 @@ docker inspect: Muestra informaciones de bajo nivel del contenedor o la imagen
 
     $ docker export -o kalicont.tar naughty_morse
 
-**docker search : **Busca una imagen en el registro de docker
+
+### docker search
+
+
+
+Busca una imagen en el registro de docker
 
 **Ejemplo:
 **
@@ -103,14 +156,24 @@ docker inspect: Muestra informaciones de bajo nivel del contenedor o la imagen
 
 ![](dockersearch.png)
 
-**docker pull :** Descarga una imagen del registro de Docker
+
+### docker pull
+
+
+
+Descarga una imagen del registro de Docker
 
 **Ejemplo:
 **
 
     $ docker pull docker.io/ubuntu
 
-**docker history :** Muestra el historial de una imagen
+
+### docker history 
+
+
+
+Muestra el historial de una imagen
 
 **Ejemplo:
 **
@@ -119,7 +182,12 @@ docker inspect: Muestra informaciones de bajo nivel del contenedor o la imagen
 
 ![](dockerhistory.png)
 
-**docker images :** Muestra las imágenes que tenemos disponible localmente
+
+### docker images 
+
+
+
+Muestra las imágenes que tenemos disponible localmente
 
 **Ejemplo:
 **
@@ -128,14 +196,18 @@ docker inspect: Muestra informaciones de bajo nivel del contenedor o la imagen
 
 ![](dockerimages.png)
 
-**docker kill :** Detiene un contenedor enviando un SIGKILL.
+### docker kill 
+
+Detiene un contenedor enviando un SIGKILL.
 
 **Ejemplo:
 **
 
     $ docker kill naughty_morse
 
-**docker load :** Carga una imagen desde un archivo tar
+### docker load 
+
+Carga una imagen desde un archivo tar
 
 **Ejemplo:
 **
@@ -144,14 +216,18 @@ docker inspect: Muestra informaciones de bajo nivel del contenedor o la imagen
 
     $ docker load < kalicont.tar
 
-**docker rmi :** Elimina una o mas imagen. Si la imagen a borrar tiene un contenedor dependiente, se deben eliminar esos contenedores con docker rm para poder borrar la imagen
+### docker rmi 
+
+Elimina una o mas imagen. Si la imagen a borrar tiene un contenedor dependiente, se deben eliminar esos contenedores con docker rm para poder borrar la imagen
 
 **Ejemplo:
 **
 
     $ docker rmi jsitech/kali-nmap
 
-**docker rm :** Elimina uno o mas contenedores.
+### docker rm 
+
+Elimina uno o mas contenedores.
 
 **Ejemplo:
 **
@@ -160,7 +236,9 @@ docker inspect: Muestra informaciones de bajo nivel del contenedor o la imagen
 
 El **id** lo podemos obtener con un ```docker ps -a```
 
-**docker login :** Se registra o loguea en un servidor de registro de Docker, si no se especifica el servidor “https://index.docker.io/v1/” es el seleccionado por defecto
+### docker login
+
+Se registra o loguea en un servidor de registro de Docker, si no se especifica el servidor “https://index.docker.io/v1/” es el seleccionado por defecto
 
 **Ejemplo:
 **
@@ -169,9 +247,13 @@ El **id** lo podemos obtener con un ```docker ps -a```
 
     $ docker login -e jason_soto@jsitech.com -p 123 -u jsitech 10.0.0.10:8080
 
-**docker logout :** Se desconecta del servidor de registro de docker.
+### docker logout
 
-**Docker stats :** Muestra el uso de recursos de los contenedores
+Se desconecta del servidor de registro de docker.
+
+### Docker stats
+
+Muestra el uso de recursos de los contenedores
 
 **Ejemplo:
 **
@@ -180,7 +262,9 @@ El **id** lo podemos obtener con un ```docker ps -a```
 
 ![](dockerstats.png)
 
-**docker build :** Crea una imagen a partir de un DockerFile
+### docker build
+
+Crea una imagen a partir de un DockerFile
 
 **Ejemplo:
 **
@@ -189,21 +273,27 @@ El **id** lo podemos obtener con un ```docker ps -a```
 
     $ docker build jsitech/kali-nmap -f /ruta/Dockerfile
 
-**docker commit :** Crea una imagen a partir de un contenedor
+### docker commit
+
+Crea una imagen a partir de un contenedor
 
 **Ejemplo:
 **
 
     $ docker commit c171f37f3224 jsitech/kali-nmap
 
-**docker pause :** Congela todos los procesos en un contenedor
+### docker pause
+
+Congela todos los procesos en un contenedor
 
 **Ejemplo:
 **
 
     $ docker pause naughty_colden
 
-**docker rename :** Renombra un contenedor con el nombre deseado
+### docker rename
+
+Renombra un contenedor con el nombre deseado
 
     $ docker rename naughty_colden jsitech_kali
 
